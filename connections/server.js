@@ -11,7 +11,7 @@ export const liveServer = async (slug) => {
     const app = express();
     const server = createServer(app);
     const wss = new WebSocketServer({ server });
- const port = process.env.PORT || 5001; // Use the environment variable, or 3000 if the variable is not set
+ const port = 5001
 
 server.listen(port, () => {
   console.log('Server is listening on port', port);
