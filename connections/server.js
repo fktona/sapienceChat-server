@@ -70,6 +70,14 @@ export const liveServer = async ( slug) => {
     //         process.exit(0);
     //     });
     // });
+    // process.on('SIGINT', () => {
+    //     console.log('Server shutting down...');
+    //     wss.close(() => {
+    //         console.log('Server closed');
+    //         process.exit(0);
+    //     });
+    // });
 
+    // console.log('WebSocket server listening on port 3001');
     // console.log('WebSocket server listening on port 3001');
 };
