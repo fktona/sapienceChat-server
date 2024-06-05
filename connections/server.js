@@ -6,20 +6,18 @@ import db from '../models/index.js';
 
 const File = db.File;
 
-export const liveServer = async (slug) => {
-  const {fileId, filename} = await File.findOne({ slug });
-    const app = express();
-    const server = createServer(app);
-    const wss = new WebSocketServer({ server });
- const port = process.env.PORT || 5001; // Use the environment variable, or 3000 if the variable is not set
+export const liveServer = async ( slug) => {
+    if(slug == '') {
+        return;
+    }
+    const server = createServer();
+//   const {fileId, filename} = await File.findOne({ slug });
+    const wss = new WebSocketServer({ noServer: true });
 
-server.listen(port, () => {
-  console.log('Server is listening on port', port);
-  console.log('WebSocket connected', server.address());
-});
-      console.log('WebSocket connected' , server.address());
+
 
     wss.on('connection', (ws) => {
+            console.log('WebSocket connected');
       
         let chatting = true;
         
@@ -65,13 +63,13 @@ server.listen(port, () => {
     });
 
     
-    process.on('SIGINT', () => {
-        console.log('Server shutting down...');
-        wss.close(() => {
-            console.log('Server closed');
-            process.exit(0);
-        });
-    });
+    // process.on('SIGINT', () => {
+    //     console.log('Server shutting down...');
+    //     wss.close(() => {
+    //         console.log('Server closed');
+    //         process.exit(0);
+    //     });
+    // });
 
-    console.log('WebSocket server listening on port 3001');
+    // console.log('WebSocket server listening on port 3001');
 };
